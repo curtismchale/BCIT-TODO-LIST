@@ -1,0 +1,16 @@
+#bcit-todo-form p{
+	/* this is a fairly basic CSS clear pattern */
+	display:block;
+	clear:both;
+	overflow:hidden;
+}
+
+#bcit-todo-form label{
+	width:20%;
+	display:inline-block;
+	float:left;
+}
+
+#bcit-todo-form input[type="text"]{width:80%; float:left;}
+
+#bcit-todo-form textarea{margin-top:5px;}

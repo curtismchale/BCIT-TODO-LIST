@@ -138,6 +138,8 @@ class BCIT_TODO_List{
 
 		$this->remove_caps();
 
+		flush_rewrite_rules();
+
 	} // deactivate
 
 	/**

@@ -8,6 +8,16 @@ class BCIT_TODO_shortcodes{
 
 	} // __construct
 
+	/**
+	 * This gives us the form for adding TODO items
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @uses current_user_can()             Returns true if the current user has specified caps
+	 * @uses $this->get_form_html()         Returns the HTML we want for our TODO list form
+	 * @return string       $html           Our form HTML
+	 */
 	public function add_item_form(){
 
 		$html = '';

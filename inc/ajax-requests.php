@@ -25,29 +25,7 @@ class BCIT_TODO_Ajax_Requests{
 
 		if ( true === $save_me ){
 
-			$post_content = isset( $_POST['description'] ) ? $_POST['description'] : '';
-
-			$post_args = array(
-				'post_title'   => esc_attr( $_POST['title'] ),
-				'post_type'    => 'bcit_todo',
-				'post_content' => wp_kses_post( $post_content ),
-				'post_author'  => absint( get_current_user_id() ),
-				'post_status'  => 'publish',
-			);
-
-			$post_id = wp_insert_post( $post_args );
-
-			if ( ! is_wp_error( $post_id ) ){
-				$args = array(
-					'success' => true,
-					'message' => 'Task saved',
-				);
-			} else {
-				$args = array(
-					'success' => false,
-					'message' => 'Had a post title but somethin went wrong with saving the task',
-				);
-			}
+			$args = $this->save_task( $_POST );
 
 		} else {
 
@@ -61,6 +39,45 @@ class BCIT_TODO_Ajax_Requests{
 		wp_send_json_success( $args );
 
 	} // process_todo_item
+
+	/**
+	 * Handles the saving of our task
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @param array     $posted_values      required            The values passed through from $_POST
+	 * @return array    $args                                   The success/fail messages for our json response
+	 */
+	private function save_task( $posted_values ){
+
+		$post_content = isset( $posted_values['description'] ) ? $posted_values['description'] : '';
+
+		$post_args = array(
+			'post_title'   => esc_attr( $posted_values['title'] ),
+			'post_type'    => 'bcit_todo',
+			'post_content' => wp_kses_post( $post_content ),
+			'post_author'  => absint( get_current_user_id() ),
+			'post_status'  => 'publish',
+		);
+
+		$post_id = wp_insert_post( $post_args );
+
+		if ( ! is_wp_error( $post_id ) ){
+			$args = array(
+				'success' => true,
+				'message' => 'Task saved',
+			);
+		} else {
+			$args = array(
+				'success' => false,
+				'message' => 'Had a post title but somethin went wrong with saving the task',
+			);
+		}
+
+		return $args;
+
+	} // save_task
 
 } // BCIT_TODO_Ajax_Requests
 

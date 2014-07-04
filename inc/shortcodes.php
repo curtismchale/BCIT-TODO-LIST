@@ -10,15 +10,27 @@ class BCIT_TODO_shortcodes{
 
 	public function add_item_form(){
 
+		$html = '';
+
 		if ( current_user_can( 'create_todo_list' ) || current_user_can( 'edit_todo_list' ) ) {
 
-			$html = 'something';
+			$html .= $this->get_form_html();
 
-		} // if current_user_can
+		} else {
+			$html .= 'Sorry you are not allowed to add todo items';
+		}
 
 		return $html;
 
 	} // add_item_form
+
+	private function get_form_html(){
+
+		$html = 'this will be our form';
+
+		return $html;
+
+	} // get_form_html
 
 } // BCIT_TODO_shortcodes
 

@@ -54,6 +54,13 @@ class BCIT_TODO_List{
 		// styles plugin
 		wp_enqueue_style( 'bcit_todo_styles', plugins_url( '/bcit-todo-list/assets/frontend-styles.css' ), '', '1.0', 'all');
 
+		// scripts plugin
+		wp_enqueue_script( 'bcit_todo_frontend_scripts', plugins_url( '/bcit-todo-list/assets/frontend-scripts.js' ), array('jquery'), '1.0', true );
+		wp_localize_script( 'bcit_todo_frontend_scripts', 'BCITTODO', array(
+			'ajaxurl'              => admin_url( 'admin-ajax.php' ),
+			'bcit_todo_ajax_nonce' => wp_create_nonce( 'bcit_todo_ajax_nonce' ),
+		) );
+
 	} // enqueue
 
 	/**

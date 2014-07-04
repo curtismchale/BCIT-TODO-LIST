@@ -34,9 +34,28 @@ class BCIT_TODO_shortcodes{
 
 	} // add_item_form
 
+	/**
+	 * Returns our form HTML
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 */
 	private function get_form_html(){
 
-		$html = 'this will be our form';
+		$html = '<form action="bcit_todo_add_todo_item" id="bcit-todo-form" >';
+			$html .= '<p>';
+				$html .= '<label for="bcit-todo-item">Task</label>';
+				$html .= '<input id="bcit-todo-item" type="text" placeholder="Task Name" />';
+			$html .= '</p>';
+
+			$html .= '<p>';
+				$html .= '<label for="bcit-todo-item-description">Description</label>';
+				$html .= '<textarea id="bcit-todo-item" placeholder="Task Description"></textarea>';
+			$html .= '</p>';
+
+			$html .= '<input type="submit" id="bcit-todo-submit" value="Save Task">';
+
+		$html .= '</form>';
 
 		return $html;
 

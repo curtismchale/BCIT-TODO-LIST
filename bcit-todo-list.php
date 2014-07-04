@@ -29,12 +29,53 @@ class BCIT_TODO_List{
 
 	function __construct(){
 
+		add_action( 'init', array( $this, 'add_custom_post_types' ) );
+
 		// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate' ) );
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall' ) );
 
 	} // construct
+
+	/**
+	 * Builds out the custom post types for the site
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 * @access public
+	 *
+	 * @uses    register_post_type
+	 */
+	public function add_custom_post_types(){
+
+		register_post_type( 'bcit_todo', // http://codex.wordpress.org/Function_Reference/register_post_type
+			array(
+				'labels'                => array(
+					'name'                  => __('TODOS'),
+					'singular_name'         => __('TODO'),
+					'add_new'               => __('Add New'),
+					'add_new_item'          => __('Add New TODO'),
+					'edit'                  => __('Edit'),
+					'edit_item'             => __('Edit TODO'),
+					'new_item'              => __('New TODO'),
+					'view'                  => __('View TODO'),
+					'view_item'             => __('View TODO'),
+					'search_items'          => __('Search TODOS'),
+					'not_found'             => __('No TODOS Found'),
+					'not_found_in_trash'    => __('No TODOS found in Trash')
+					), // end array for labels
+				'public'                => true,
+				'menu_position'         => 5, // sets admin menu position
+				'menu_icon'             => 'dashicons-list-view',
+				'hierarchical'          => false, // functions like posts
+				'supports'              => array('title', 'editor', 'revisions', 'excerpt', 'thumbnail'),
+				'rewrite'               => array('slug' => 'bcit-todo', 'with_front' => true,), // permalinks format
+				'can_export'            => true,
+			)
+		);
+
+	} // add_custom_post_types
 
 	/**
 	 * Adds our custom capabilities for the TODO list
@@ -82,6 +123,9 @@ class BCIT_TODO_List{
 	public function activate( $network_wide ){
 
 		$this->create_caps();
+
+		$this->add_custom_post_types();
+		flush_rewrite_rules();
 
 	} // activate
 

@@ -37,11 +37,51 @@ class BCIT_TODO_List{
 	} // construct
 
 	/**
+	 * Adds our custom capabilities for the TODO list
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @uses get_role()                 Gets the WP role specified
+	 * @uses add_cap()                  Adds capability to the role object
+	 */
+	public function create_caps(){
+
+		$admin = get_role( 'administrator' );
+		$admin->add_cap( 'create_todo_list' );
+		$admin->add_cap( 'read_todo_list' );
+		$admin->add_cap( 'update_todo_list' );
+		$admin->add_cap( 'delete_todo_list' );
+
+	} // create_caps
+
+	/**
+	 * Removes our custom capabilities when we deactivate the plugin
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @uses get_role()                 Gets the WP role specified
+	 * @uses remove_cap()               Removes capability to the role object
+	 */
+	public function remove_caps(){
+
+		$admin = get_role( 'administrator' );
+		$admin->remove_cap( 'create_todo_list' );
+		$admin->remove_cap( 'read_todo_list' );
+		$admin->remove_cap( 'update_todo_list' );
+		$admin->remove_cap( 'delete_todo_list' );
+
+	} // remove_caps
+
+	/**
 	 * Fired when plugin is activated
 	 *
 	 * @param   bool    $network_wide   TRUE if WPMU 'super admin' uses Network Activate option
 	 */
 	public function activate( $network_wide ){
+
+		$this->create_caps();
 
 	} // activate
 
@@ -51,6 +91,8 @@ class BCIT_TODO_List{
 	 * @param   bool    $network_wide   TRUE if WPMU 'super admin' uses Network Activate option
 	 */
 	public function deactivate( $network_wide ){
+
+		$this->remove_caps();
 
 	} // deactivate
 

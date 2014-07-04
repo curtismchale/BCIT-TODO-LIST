@@ -39,6 +39,8 @@ class BCIT_TODO_shortcodes{
 	 *
 	 * @since 1.0
 	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @return string       $html           Our HTML form
 	 */
 	private function get_form_html(){
 

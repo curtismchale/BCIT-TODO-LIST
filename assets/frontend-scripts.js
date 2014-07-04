@@ -4,7 +4,12 @@ jQuery(document).ready(function($) {
 
 		e.preventDefault();
 
-		console.log('clicked');
+		var form        = $( '#bcit-todo-form' );
+		var action      = $( form ).attr( 'action' );
+		var title       = $( form ).find( '#bcit-todo-item' ).val();
+		var description = $( form ).find( '#bcit-todo-item-description' ).val();
+
+
 	});
 
 });

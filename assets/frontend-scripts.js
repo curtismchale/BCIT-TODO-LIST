@@ -12,7 +12,8 @@ jQuery(document).ready(function($) {
 		var data = {
 			action: action,
 			title: title,
-			description: description
+			description: description,
+			security: BCITTODO.bcit_todo_ajax_nonce
 		}
 
 		$.post( BCITTODO.ajaxurl, data, function( response ) {

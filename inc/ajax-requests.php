@@ -15,6 +15,8 @@ class BCIT_TODO_Ajax_Requests{
 	 */
 	public function process_todo_item(){
 
+		check_ajax_referer( 'bcit_todo_ajax_nonce', 'security' );
+
 		wp_send_json_success();
 
 	} // process_todo_item

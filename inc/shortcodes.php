@@ -52,7 +52,7 @@ class BCIT_TODO_shortcodes{
 
 			$html .= '<p>';
 				$html .= '<label for="bcit-todo-item-description">Description</label>';
-				$html .= '<textarea id="bcit-todo-item" placeholder="Task Description"></textarea>';
+				$html .= '<textarea id="bcit-todo-item-description" placeholder="Task Description"></textarea>';
 			$html .= '</p>';
 
 			$html .= '<input type="submit" id="bcit-todo-submit" value="Save Task">';

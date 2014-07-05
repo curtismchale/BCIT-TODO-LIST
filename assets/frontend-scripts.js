@@ -18,11 +18,26 @@ jQuery(document).ready(function($) {
 
 		$.post( BCITTODO.ajaxurl, data, function( response ) {
 
-			console.log(response);
+			if ( response.success === true ) {
+				clear_form( form );
+			}
+
+			if ( response.success === false ) {
+
+			}
 
 		}); // end AJAX post
 
 
 	});
+
+	/**
+	 * Clears our form for us
+	 *
+	 * @param object    form        This is the jquery form object passed
+	 */
+	function clear_form( form ){
+		$( form ).find( 'input[type="text"], textarea' ).val( '' );
+	}
 
 });

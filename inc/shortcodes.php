@@ -80,6 +80,8 @@ class BCIT_TODO_shortcodes{
 			$html .= '<img src="'. plugins_url( '/bcit-todo-list/assets/images/spinner.gif' ).'" class="bcit-todo-ajax-spinner" />';
 		$html .= '</section>';
 
+		return $html;
+
 	} // get_response_section
 
 } // BCIT_TODO_shortcodes

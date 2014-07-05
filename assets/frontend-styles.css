@@ -14,3 +14,6 @@
 #bcit-todo-form input[type="text"]{width:80%; float:left;}
 
 #bcit-todo-form textarea{margin-top:5px;}
+
+#bcit-todo-form input[type="submit"]{float:left; margin-right:10px;}
+#bcit-todo-form #bcit_ajax_response .bcit-todo-ajax-spinner{float:left; display:none;}

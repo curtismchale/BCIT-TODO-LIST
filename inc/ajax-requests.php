@@ -19,7 +19,7 @@ class BCIT_TODO_Ajax_Requests{
 
 		$save_me = false;
 
-		if ( isset( $_POST['title'] ) && current_user_can( 'create_todo_list' ) ) {
+		if ( isset( $_POST['title'] ) && ! empty( $_POST['title'] ) && current_user_can( 'create_todo_list' ) ) {
 			$save_me = true;
 		}
 

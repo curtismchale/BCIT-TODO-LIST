@@ -32,6 +32,7 @@ class BCIT_TODO_List{
 	function __construct(){
 
 		add_action( 'init', array( $this, 'add_custom_post_types' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 
 		// Register hooks that are fired when the plugin is activated, deactivated, and uninstalled, respectively.
 		register_activation_hook( __FILE__, array( $this, 'activate' ) );
@@ -39,6 +40,25 @@ class BCIT_TODO_List{
 		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall' ) );
 
 	} // construct
+
+	/**
+	 * Registers and enqueues scripts and styles
+	 *
+	 * @since 1.0
+	 * @author ME
+	 * @access public
+	 */
+	public function enqueue(){
+
+		wp_enqueue_style( 'bcit_todo_styles', plugins_url( '/bcit-todo-list/assets/frontend-styles.css' ), '', '1.0', 'all' );
+
+		wp_enqueue_script( 'bcit_todo_frontend_scripts', plugins_url( '/bcit-todo-list/assets/frontend-scripts.js' ), array( 'jquery' ), '1.0', true );
+		wp_localize_script( 'bcit_todo_frontend_scripts', 'BCITTODO', array(
+			'ajaxurl'              => admin_url( 'admin-ajax.php' ),
+			'bcit_todo_ajax_nonce' => wp_create_nonce( 'bcit_todo_ajax_nonce' ),
+		));
+
+	} // enqueue
 
 		/**
 	 * Builds out the custom post types for the site

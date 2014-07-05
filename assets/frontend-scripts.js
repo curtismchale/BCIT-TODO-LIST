@@ -8,6 +8,10 @@ jQuery(document).ready(function($) {
 		var action      = $( form ).attr( 'action' );
 		var title       = $( form ).find( '#bcit-todo-item' ).val();
 		var description = $( form ).find( '#bcit-todo-item-description' ).val();
+		var responsediv = $( form ).find( '#bcit_ajax_response' );
+		var spinner     = $( form ).find( '.bcit-todo-ajax-spinner' );
+
+		$(spinner).show();
 
 		var data = {
 			action: action,
@@ -18,12 +22,17 @@ jQuery(document).ready(function($) {
 
 		$.post( BCITTODO.ajaxurl, data, function( response ) {
 
-			if ( response.success === true ) {
+			$(spinner).hide();
+
+			if ( response.data.success === true ) {
+				$( responsediv ).append( '<p class="response-message success">'+response.data.message+'</p>' );
+				$( responsediv ).find( '.response-message' ).delay('4000').fadeOut('4000');
 				clear_form( form );
 			}
 
-			if ( response.success === false ) {
-
+			if ( response.data.success === false ) {
+				$( responsediv ).append( '<p class="error response-message">'+response.data.message+'</p>' );
+				$( responsediv ).find( '.response-message' ).delay('4000').fadeOut('4000');
 			}
 
 		}); // end AJAX post

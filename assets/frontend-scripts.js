@@ -18,6 +18,8 @@ jQuery(document).ready(function($) {
 
 		$.post( BCITTODO.ajaxurl, data, function( response ){
 
+			console.log( response );
+
 		});
 
 	});

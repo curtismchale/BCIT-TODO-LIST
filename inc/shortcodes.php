@@ -45,7 +45,7 @@ class BCIT_TODO_shortcodes{
 			'posts_per_page' => -1,
 		);
 
-		$todo_posts = get_posts( $args );
+		$todo_posts = get_posts( $query_args );
 
 		return $todo_posts;
 

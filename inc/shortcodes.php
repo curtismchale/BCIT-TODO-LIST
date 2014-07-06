@@ -16,6 +16,8 @@ class BCIT_TODO_shortcodes{
 	 * @since 1.0
 	 * @author SFNdesign, Curtis McHale
 	 *
+	 * @uses $this->get_tasks()                 Returns posts from get_posts
+	 * @uses $this->get_task_list_html()        Returns the HTML for our task list
 	 */
 	public function list_tasks(){
 
@@ -38,6 +40,8 @@ class BCIT_TODO_shortcodes{
 	 * @author SFNdesign, Curtis McHale
 	 *
 	 * @param array         $tasks          required            The posts that we want to render as tasks
+	 * @uses is_wp_error()                                      Returns true if the object passed is a WP_ERROR object
+	 * @uses $this->get_single_task()                           Returns the single task HTML as an li
 	 */
 	private function get_task_list_html( $tasks ){
 
@@ -66,6 +70,8 @@ class BCIT_TODO_shortcodes{
 	 * @author SFNdesign, Curtis McHale
 	 *
 	 * @param object        $task           required            Post Object
+	 * @uses esc_attr()                                         Making sure our title is safe
+	 * @uses wp_kses_post()                                     making sure our 'post like' content is safe
 	 * @return string       $html                               Our assembled HTML for a single task
 	 */
 	private function get_single_task( $task ){

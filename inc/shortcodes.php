@@ -41,7 +41,7 @@ class BCIT_TODO_shortcodes{
 	private function get_task_posts(){
 
 		$query_args = array(
-			'post_type' => 'bcit_todo',
+			'post_type'      => 'bcit_todo',
 			'posts_per_page' => -1,
 		);
 

@@ -22,7 +22,7 @@ class BCIT_TODO_shortcodes{
 
 		$html = '';
 
-		if ( current_user_can( 'create_todo_list' ) || current_user_can( 'edit_todo_list' ) ) {
+		if ( current_user_can( 'create_todo_list' ) || current_user_can( 'update_todo_list' ) ) {
 
 			$html .= $this->get_form_html();
 

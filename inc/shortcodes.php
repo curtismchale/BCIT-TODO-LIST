@@ -4,9 +4,24 @@ class BCIT_TODO_shortcodes{
 
 	function __construct(){
 
+		add_shortcode( 'bcit_todo_list_tasks', array( $this, 'list_tasks' ) );
+
 		add_shortcode( 'bcit_todo_add_item_form', array( $this, 'add_item_form' ) );
 
 	} // __construct
+
+	/**
+	 * This should list all the tasks that are in our TODO list
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 */
+	public function list_tasks(){
+
+		return 'list tasks';
+
+	} // list_tasks
 
 	/**
 	 * This gives us the form for adding TODO items

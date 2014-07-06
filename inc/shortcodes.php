@@ -23,11 +23,61 @@ class BCIT_TODO_shortcodes{
 
 			$tasks = $this->get_task_posts();
 
+			$html .= $this->get_task_list_html( $tasks );
+
 		$html .= '</section>';
 
 		return $html;
 
 	} // list_tasks
+
+	/**
+	 * Returns our task list HTML
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @param array         $tasks          required            The posts that we want to render as tasks
+	 */
+	private function get_task_list_html( $tasks ){
+
+		$html = '';
+
+		if ( is_wp_error( $tasks ) || empty( $tasks ) ){
+			$html .= 'No tasks';
+		} else {
+
+			foreach( $tasks as $t ){
+				$html .= '<ul id="bcit-task-list">';
+					$html .= $this->get_single_task( $t );
+				$html .= '</ul>';
+			} // foreach
+
+		} // if is_wp_error, empty
+
+		return $html;
+
+	} // get_task_list_html
+
+	/**
+	 * Returns the HTML for our single task
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @param object        $task           required            Post Object
+	 * @return string       $html                               Our assembled HTML for a single task
+	 */
+	private function get_single_task( $task ){
+
+		$html = '<li class="bcit-single-task">';
+			$html .= '<span class="task-title">'. esc_attr( get_the_title( $task->ID ) ) .'</span>';
+			$html .= '<span class="task-description">'. wp_kses_post( $task->post_content ) .'</span>';
+		$html .= '</li>';
+
+		return $html;
+
+	} // get_single_task
 
 	/**
 	 * Returns our post object containing our tasks

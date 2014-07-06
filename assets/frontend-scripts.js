@@ -24,10 +24,30 @@ jQuery(document).ready(function($) {
 
 			$( spinner ).hide();
 
-			console.log( response );
+			if ( response.data.success === true ){
+				$( responsediv ).append( '<p class="response-message success">'+response.data.message+'</p>' );
+				$( responsediv ).find( '.response-message' ).delay( '4000' ).fadeOut( '4000' );
+				clear_form( form );
+			} // if success true
 
+			if ( response.data.success === false ){
+				$( responsediv ).append( '<p class="response-message error">'+response.data.message+'</p>' );
+				$( responsediv ).find( '.response-message' ).delay( '4000' ).fadeOut( '4000' );
+			} // if sucess false
 		});
 
 	});
+
+	/**
+	 * Clears our form for us
+	 *
+	 * @since 1.0
+	 * @author ME
+	 *
+	 * @param object  form      required        jquery form object
+	 */
+	function clear_form( form ){
+		$( form ).find( 'input[type="text"], textarea' ).val( '' );
+	} // clear_form
 
 });

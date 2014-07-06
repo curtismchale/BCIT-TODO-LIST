@@ -18,6 +18,6 @@
 #bcit-todo-form input[type="submit"]{float:left; margin-right:10px;}
 #bcit-todo-form #bcit_ajax_response{float:left;}
 #bcit-todo-form #bcit_ajax_response .bcit-todo-ajax-spinner{display:none;}
-#bcit-todo-form #bcit_ajax_response .response-message{float:left; display:inline-block;}
+#bcit-todo-form #bcit_ajax_response .response-message{float:left; display:inline-block; margin-bottom:0; margin-top:6px;}
 #bcit-todo-form #bcit_ajax_response .success{color:green;}
 #bcit-todo-form #bcit_ajax_response .error{color:red;}

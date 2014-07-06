@@ -50,11 +50,32 @@ class BCIT_TODO_Shortcodes{
 
 			$html .= '<input type="submit" id="bcit-todo-submit" value="Save Task">';
 
+			$html .= $this->get_response_section();
+
 		$html .= '</form>';
 
 		return $html;
 
 	}
+
+	/**
+	 * Returns a response section
+	 *
+	 * @since 1.0
+	 * @author ME
+	 *
+	 * @uses plugins_url()                      returns URL to plugins directory
+	 * @return string                           Returns HTML for our response section
+	 */
+	private function get_response_section(){
+
+		$html = '<section id="bcit_ajax_response">';
+			$html .= '<img src="'. plugins_url( '/bcit-todo-list/assets/images/spinner.gif' ) .'" class="bcit-todo-ajax-spinner" />';
+		$html .= '</section>';
+
+		return $html;
+
+	} // get_response_section
 
 } // BCIT_TODO_Shortcodes
 

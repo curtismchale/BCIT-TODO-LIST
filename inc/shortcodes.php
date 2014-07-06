@@ -19,9 +19,37 @@ class BCIT_TODO_shortcodes{
 	 */
 	public function list_tasks(){
 
-		return 'list tasks';
+		$html = '<section id="bcit-task-list-wrapper">';
+
+			$tasks = $this->get_task_posts();
+
+		$html .= '</section>';
+
+		return $html;
 
 	} // list_tasks
+
+	/**
+	 * Returns our post object containing our tasks
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @uses get_posts()                    Returns posts given post args
+	 * @return array        $todo_posts     Our posts matching the args
+	 */
+	private function get_task_posts(){
+
+		$query_args = array(
+			'post_type' => 'bcit_todo',
+			'posts_per_page' => -1,
+		);
+
+		$todo_posts = get_posts( $args );
+
+		return $todo_posts;
+
+	} // get_tasks
 
 	/**
 	 * This gives us the form for adding TODO items

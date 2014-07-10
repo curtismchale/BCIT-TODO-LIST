@@ -30,6 +30,12 @@
 	padding:5px;
 	margin-bottom:-1px;
 }
+#bcit-task-list .task-title{
+	border-right:1px solid #CCC;
+	margin-right:5px;
+	width:30%;
+	display:inline-block;
+}
 #bcit-task-list li:hover{background:#F2ECEC; cursor:pointer;}
 #bcit-task-list .bcit-button{
 	float:right;

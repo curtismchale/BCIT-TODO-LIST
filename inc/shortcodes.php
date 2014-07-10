@@ -125,7 +125,7 @@ class BCIT_TODO_shortcodes{
 
 		if ( current_user_can( 'create_todo_list' ) || current_user_can( 'update_todo_list' ) ) {
 
-			$html .= $this->get_form_html();
+			$html .= bcit_todo_get_html_form();
 
 		} else {
 			$html .= 'Sorry you are not allowed to add todo items';
@@ -134,56 +134,6 @@ class BCIT_TODO_shortcodes{
 		return $html;
 
 	} // add_item_form
-
-	/**
-	 * Returns our form HTML
-	 *
-	 * @since 1.0
-	 * @author SFNdesign, Curtis McHale
-	 *
-	 * @return string       $html           Our HTML form
-	 */
-	private function get_form_html(){
-
-		$html = '<form action="bcit_todo_add_todo_item" id="bcit-todo-form" >';
-			$html .= '<p>';
-				$html .= '<label for="bcit-todo-item">Task</label>';
-				$html .= '<input id="bcit-todo-item" type="text" placeholder="Task Name" />';
-			$html .= '</p>';
-
-			$html .= '<p>';
-				$html .= '<label for="bcit-todo-item-description">Description</label>';
-				$html .= '<textarea id="bcit-todo-item-description" placeholder="Task Description"></textarea>';
-			$html .= '</p>';
-
-			$html .= '<input type="submit" id="bcit-todo-submit" value="Save Task">';
-
-			$html .= $this->get_response_section();
-
-		$html .= '</form>';
-
-		return $html;
-
-	} // get_form_html
-
-	/**
-	 * Returns our AJAX response HTML
-	 *
-	 * @since 1.0
-	 * @author SFNdesign, Curtis McHale
-	 *
-	 * @uses plugins_url()          Returns  the HTTP path for the plugin folder
-	 * @return string               HTML for our response area
-	 */
-	private function get_response_section(){
-
-		$html = '<section id="bcit_ajax_response">';
-			$html .= '<img src="'. plugins_url( '/bcit-todo-list/assets/images/spinner.gif' ).'" class="bcit-todo-ajax-spinner" />';
-		$html .= '</section>';
-
-		return $html;
-
-	} // get_response_section
 
 } // BCIT_TODO_shortcodes
 

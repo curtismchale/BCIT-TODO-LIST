@@ -107,6 +107,13 @@ class BCIT_TODO_Ajax_Requests{
 				'success' => true,
 				'message' => 'Task saved',
 			);
+
+			if ( $post_id == $posted_values['post_id'] ){
+				$args['updated']          = true;
+				$args['task_title']       = esc_attr( $posted_values['title'] );
+				$args['task_description'] = esc_textarea( $posted_values['description'] );
+			}
+
 		} else {
 			$args = array(
 				'success' => false,

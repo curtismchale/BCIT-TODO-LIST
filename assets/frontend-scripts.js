@@ -30,6 +30,17 @@ jQuery(document).ready(function($) {
 				$( responsediv ).append( '<p class="response-message success">'+response.data.message+'</p>' );
 				$( responsediv ).find( '.response-message' ).delay('4000').fadeOut('4000');
 				clear_form( form );
+
+				if ( response.data.updated === true ){
+					var list_wrapper = $(form).parents('.bcit-single-task');
+					var task_wrapper = $(list_wrapper).find( '.task-wrapper' );
+
+					$(task_wrapper).find('.task-title').empty().append( response.data.task_title );
+					$(task_wrapper).find('.task-description').empty().append( response.data.task_description );
+
+					$(task_wrapper).show();
+					$(form).remove();
+				}
 			}
 
 			if ( response.data.success === false ) {

@@ -116,7 +116,7 @@ class BCIT_TODO_shortcodes{
 	 * @author SFNdesign, Curtis McHale
 	 *
 	 * @uses current_user_can()             Returns true if the current user has specified caps
-	 * @uses $this->get_form_html()         Returns the HTML we want for our TODO list form
+	 * @uses bcit_todo_get_html_form()      Returns the HTML we want for our TODO list form
 	 * @return string       $html           Our form HTML
 	 */
 	public function add_item_form(){

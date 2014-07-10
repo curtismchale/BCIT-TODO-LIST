@@ -6,7 +6,8 @@
  * @since 1.0
  * @author SFNdesign, Curtis McHale
  *
- * @return string       $html           Our HTML form
+ * @uses bcit_todo_get_response_section()       Returns the seciton that we use for our ajax responses
+ * @return string       $html                   Our HTML form
  */
 function bcit_todo_get_html_form(){
 

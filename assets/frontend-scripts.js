@@ -48,4 +48,41 @@ jQuery(document).ready(function($) {
 		$( form ).find( 'input[type="text"], textarea' ).val( '' );
 	}
 
+	/**
+	 * Getting our edit form for todo tasks
+	 */
+	$( '.bcit-button.edit' ).click( function(e){
+
+		e.preventDefault();
+
+		var button       = $(this);
+		var post_id      = $(this).attr('href');
+		var list_wrapper = $(this).parent('.bcit-single-task');
+		var spinner      = $(list_wrapper).find('.bcit-todo-ajax-spinner');
+
+		$(spinner).show();
+
+		var data = {
+			action: 'bcit_todo_edit_form',
+			post_id: post_id,
+			security: BCITTODO.bcit_todo_ajax_nonce
+		}
+
+		$.post( BCITTODO.ajaxurl, data, function( response ) {
+
+			$(spinner).hide();
+
+			if ( response.data.success === true ) {
+				$( list_wrapper ).empty().append( response.data.html );
+			}
+
+			if ( response.data.success === false ) {
+				$( list_wrapper ).append( '<p class="error response-message">'+response.data.message+'</p>' );
+				$( responsediv ).find( '.response-message' ).delay('4000').fadeOut('4000').remove();
+			}
+
+		});
+
+	});
+
 });

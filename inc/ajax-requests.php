@@ -5,7 +5,19 @@ class BCIT_TODO_Ajax_Requests{
 	function __construct(){
 		add_action( 'wp_ajax_bcit_todo_add_todo_item', array( $this, 'process_todo_item' ) );
 		add_action( 'wp_ajax_nopriv_bcit_todo_add_todo_item', array( $this, 'process_todo_item' ) );
+
+		add_action( 'wp_ajax_bcit_todo_edit_form', array( $this, 'get_edit_form' ) );
+		add_action( 'wp_ajax_nopriv_bcit_todo_edit_form', array( $this, 'get_edit_form' ) );
+
 	} // __construct
+
+	public function get_edit_form(){
+
+		check_ajax_referer( 'bcit_todo_ajax_nonce', 'security' );
+
+		wp_send_json_success( 'something' );
+
+	}
 
 	/**
 	 * Processes the submitted TODO item

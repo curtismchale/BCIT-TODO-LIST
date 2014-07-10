@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$( '#bcit-todo-form' ).submit( function(e){
+	$( 'body' ).on( 'submit', '#bcit-todo-form', function(e){
 
 		e.preventDefault();
 

@@ -23,9 +23,15 @@ class BCIT_TODO_shortcodes{
 
 		$html = '<section id="bcit-task-list-wrapper">';
 
+		if ( current_user_can( 'read_todo_list' ) ){
+
 			$tasks = $this->get_task_posts();
 
 			$html .= $this->get_task_list_html( $tasks );
+
+		} else {
+			$html .= 'You are not allowed to see tasks';
+		}
 
 		$html .= '</section>';
 

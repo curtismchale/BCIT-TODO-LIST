@@ -88,4 +88,21 @@ jQuery(document).ready(function($) {
 
 	});
 
+	/**
+	 * Handling the cancel edit of a form
+	 */
+
+	$( 'body' ).on( 'click', '#bcit-todo-cancel', function(e){
+
+		e.preventDefault();
+
+		var list_wrapper = $(this).parents('.bcit-single-task');
+		var form_holder  = $(list_wrapper).find('.form-holder');
+		var task_wrapper = $(list_wrapper).find( '.task-wrapper' );
+
+		$(form_holder).empty();
+		$(task_wrapper).show();
+
+	});
+
 });

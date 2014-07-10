@@ -15,7 +15,19 @@ class BCIT_TODO_Ajax_Requests{
 
 		check_ajax_referer( 'bcit_todo_ajax_nonce', 'security' );
 
-		wp_send_json_success( 'something' );
+		if ( current_user_can( 'update_todo_list' ) ){
+			$args = array(
+				'success' => true,
+				'message' => bcit_todo_get_html_form( absint( $_POST['post_id'] ) ),
+			);
+		} else {
+			$args = array(
+				'success' => false,
+				'message' => 'You are not allowed to edit todo items',
+			);
+		}
+
+		wp_send_json_success( $args );
 
 	}
 

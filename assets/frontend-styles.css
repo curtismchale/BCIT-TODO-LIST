@@ -21,3 +21,12 @@
 #bcit-todo-form #bcit_ajax_response .response-message{float:left; display:inline-block;}
 #bcit-todo-form #bcit_ajax_response .success{color:green;}
 #bcit-todo-form #bcit_ajax_response .error{color:red;}
+
+/** Task Lists **/
+#bcit-task-list li{
+	list-style-type:none;
+	border:1px solid #CCC;
+	padding:5px;
+	margin-bottom:-1px;
+}
+#bcit-task-list li:hover{background:#F2ECEC; cursor:pointer;}

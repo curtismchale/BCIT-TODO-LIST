@@ -56,9 +56,11 @@ jQuery(document).ready(function($) {
 		e.preventDefault();
 
 		var button       = $(this);
-		var post_id      = $(this).attr('href');
-		var list_wrapper = $(this).parent('.bcit-single-task');
+		var post_id      = $(button).attr('href');
+		var list_wrapper = $(button).parents('.bcit-single-task');
 		var spinner      = $(list_wrapper).find('.bcit-todo-ajax-spinner');
+		var form_holder  = $(list_wrapper).find('.form-holder');
+		var task_wrapper = $(list_wrapper).find( '.task-wrapper' );
 
 		$(spinner).show();
 
@@ -73,7 +75,8 @@ jQuery(document).ready(function($) {
 			$(spinner).hide();
 
 			if ( response.data.success === true ) {
-				$( list_wrapper ).empty().append( response.data.html );
+				$( task_wrapper ).hide();
+				$( list_wrapper ).find(form_holder).empty().append( response.data.message );
 			}
 
 			if ( response.data.success === false ) {

@@ -80,6 +80,7 @@ class BCIT_TODO_shortcodes{
 			$html .= '<span class="task-title">'. esc_attr( get_the_title( $task->ID ) ) .'</span>';
 			$html .= '<span class="task-description">'. wp_kses_post( $task->post_content ) .'</span>';
 			$html .= '<a href="'. absint( $task->ID ) .'" class="bcit-button edit">Edit</a>';
+			$html .= '<img src="'. plugins_url( '/bcit-todo-list/assets/images/spinner.gif' ).'" class="bcit-todo-ajax-spinner" />';
 		$html .= '</li>';
 
 		return $html;

@@ -37,3 +37,8 @@
 	text-decoration:none;
 }
 #bcit-task-list .bcit-button:hover{background:#e3dfdf; color:black;}
+#bcit-task-list .bcit-single-task .bcit-todo-ajax-spinner{
+	float:right;
+	margin-right:5px;
+	display:none;
+}

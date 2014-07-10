@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 		var action      = $( form ).attr( 'action' );
 		var title       = $( form ).find( '#bcit-todo-item' ).val();
 		var description = $( form ).find( '#bcit-todo-item-description' ).val();
+		var post_id     = $( form ).find( '#bcit-todo-submit' ).data('post_id');
 		var responsediv = $( form ).find( '#bcit_ajax_response' );
 		var spinner     = $( form ).find( '.bcit-todo-ajax-spinner' );
 
@@ -17,6 +18,7 @@ jQuery(document).ready(function($) {
 			action: action,
 			title: title,
 			description: description,
+			post_id: post_id,
 			security: BCITTODO.bcit_todo_ajax_nonce
 		}
 

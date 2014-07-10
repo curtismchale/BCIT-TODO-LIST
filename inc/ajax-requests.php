@@ -96,6 +96,10 @@ class BCIT_TODO_Ajax_Requests{
 			'post_status'  => 'publish',
 		);
 
+		if ( isset( $posted_values['post_id'] ) && ! empty( $posted_values['post_id'] ) ){
+			$post_args['ID'] = absint( $posted_values['post_id'] );
+		}
+
 		$post_id = wp_insert_post( $post_args );
 
 		if ( ! is_wp_error( $post_id ) ){

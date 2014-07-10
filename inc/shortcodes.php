@@ -51,11 +51,11 @@ class BCIT_TODO_shortcodes{
 			$html .= 'No tasks';
 		} else {
 
+			$html .= '<ul id="bcit-task-list">';
 			foreach( $tasks as $t ){
-				$html .= '<ul id="bcit-task-list">';
 					$html .= $this->get_single_task( $t );
-				$html .= '</ul>';
 			} // foreach
+			$html .= '</ul>';
 
 		} // if is_wp_error, empty
 

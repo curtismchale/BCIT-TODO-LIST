@@ -40,6 +40,8 @@ jQuery(document).ready(function($) {
 
 					$(task_wrapper).show();
 					$(form).remove();
+				} else {
+					$('#bcit-task-list').prepend( response.data.html );
 				}
 			}
 

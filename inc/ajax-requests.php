@@ -112,6 +112,9 @@ class BCIT_TODO_Ajax_Requests{
 				$args['updated']          = true;
 				$args['task_title']       = esc_attr( $posted_values['title'] );
 				$args['task_description'] = esc_textarea( $posted_values['description'] );
+			} else {
+				$task         = get_post( $post_id );
+				$args['html'] = bcit_todo_get_single_task( $task );
 			}
 
 		} else {

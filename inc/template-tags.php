@@ -58,3 +58,30 @@ function bcit_todo_get_response_section(){
 	return $html;
 
 } // get_response_section
+
+/**
+ * Returns the HTML for our single task
+ *
+ * @since 1.0
+ * @author SFNdesign, Curtis McHale
+ *
+ * @param object        $task           required            Post Object
+ * @uses esc_attr()                                         Making sure our title is safe
+ * @uses wp_kses_post()                                     making sure our 'post like' content is safe
+ * @return string       $html                               Our assembled HTML for a single task
+ */
+function bcit_todo_get_single_task( $task ){
+
+	$html = '<li class="bcit-single-task">';
+		$html .= '<span class="task-wrapper">';
+			$html .= '<span class="task-title">'. esc_attr( get_the_title( $task->ID ) ) .'</span>';
+			$html .= '<span class="task-description">'. wp_kses_post( $task->post_content ) .'</span>';
+			$html .= '<a href="'. absint( $task->ID ) .'" class="bcit-button edit">Edit</a>';
+			$html .= '<img src="'. plugins_url( '/bcit-todo-list/assets/images/spinner.gif' ).'" class="bcit-todo-ajax-spinner" />';
+		$html .= '</span>';
+		$html .= '<span class="form-holder"></span>';
+	$html .= '</li>';
+
+	return $html;
+
+} // get_single_task

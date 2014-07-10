@@ -11,6 +11,17 @@ class BCIT_TODO_Ajax_Requests{
 
 	} // __construct
 
+	/**
+	 * Shows our edit form for tasks
+	 *
+	 * @since 1.0
+	 * @author SFNdesign, Curtis McHale
+	 *
+	 * @uses check_ajax_referer()               die if not a properly nonced request
+	 * @uses current_user_can()                 Returns true if the current user has cap provided
+	 * @uses bcit_todo_get_html_form()          Returns the HTML form
+	 * @uses wp_send_json_success()             Returns success message and $data provided
+	 */
 	public function get_edit_form(){
 
 		check_ajax_referer( 'bcit_todo_ajax_nonce', 'security' );
@@ -29,7 +40,7 @@ class BCIT_TODO_Ajax_Requests{
 
 		wp_send_json_success( $args );
 
-	}
+	} // get_edit_form
 
 	/**
 	 * Processes the submitted TODO item

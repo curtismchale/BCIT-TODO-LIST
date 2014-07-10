@@ -6,6 +6,7 @@
  * @since 1.0
  * @author SFNdesign, Curtis McHale
  *
+ * @param int       $post_id        optional    If we're editing a task need to set the post_id
  * @uses bcit_todo_get_response_section()       Returns the seciton that we use for our ajax responses
  * @return string       $html                   Our HTML form
  */

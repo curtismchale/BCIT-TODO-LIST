@@ -37,7 +37,6 @@ jQuery(document).ready(function($) {
 
 		}); // end AJAX post
 
-
 	});
 
 	/**

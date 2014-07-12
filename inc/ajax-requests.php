@@ -7,7 +7,27 @@ class BCIT_TODO_Ajax_Requests{
 		add_action( 'wp_ajax_bcit_todo_add_todo_item', array( $this, 'process_todo_item' ) );
 		add_action( 'wp_ajax_nopriv_bcit_todo_add_todo_item', array( $this, 'process_todo_item' ) );
 
+		add_action( 'wp_ajax_bcit_todo_edit_form', array( $this, 'get_edit_form' ) );
+		add_action( 'wp_ajax_nopriv_bcit_todo_edit_form', array( $this, 'get_edit_form' ) );
+
 	} // __construct
+
+	public function get_edit_form(){
+
+		if ( current_user_can( 'update_todo_list' ) ){
+			$args = array(
+				'success' => true,
+				'message' => bcit_todo_get_form_html( absint( $_POST['post_id'] ) ),
+			);
+		} else {
+			$args = array(
+				'success' => false,
+				'message' => 'You are not allowed to edit todo items',
+			);
+		}
+
+		wp_send_json_success( $args );
+	}
 
 	/**
 	 * Process submitted TODO item

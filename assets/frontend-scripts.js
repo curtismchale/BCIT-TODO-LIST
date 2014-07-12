@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
 
-	$( 'body' ).on( 'submit', '#bcit-todo-form', function( e ){
+	$( 'body' ).on( 'submit', '#bcit-todo-form', function(e){
 
 		e.preventDefault();
 
-		var form        = $( '#bcit-todo-form' );
+		var form        = $( this );
 		var action      = $( form ).attr( 'action' );
 		var title       = $( form ).find( '#bcit-todo-item' ).val();
 		var description = $( form ).find( '#bcit-todo-item-description' ).val();
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
 		var responsediv = $( form ).find( '#bcit_ajax_response' );
 		var spinner     = $( form ).find( '.bcit-todo-ajax-spinner' );
 
-		$( spinner ).show();
+		$(spinner).show();
 
 		var data = {
 			action: action,
@@ -22,13 +22,14 @@ jQuery(document).ready(function($) {
 			security: BCITTODO.bcit_todo_ajax_nonce
 		}
 
-		$.post( BCITTODO.ajaxurl, data, function( response ){
+		$.post( BCITTODO.ajaxurl, data, function( response ) {
 
-			$( spinner ).hide();
+			$(spinner).hide();
 
-			if ( response.data.success === true ){
+			if ( response.data.success === true ) {
 				$( responsediv ).append( '<p class="response-message success">'+response.data.message+'</p>' );
-				$( responsediv ).find( '.response-message' ).delay( '4000' ).fadeOut( '4000' );
+				$( responsediv ).find( '.response-message' ).delay('4000').fadeOut('4000');
+				console.log( 'clear' );
 				clear_form( form );
 
 				if ( response.data.updated === true ){
@@ -43,14 +44,14 @@ jQuery(document).ready(function($) {
 				} else {
 					$('#bcit-task-list').prepend( response.data.html );
 				}
+			}
 
-			} // if success true
+			if ( response.data.success === false ) {
+				$( responsediv ).append( '<p class="error response-message">'+response.data.message+'</p>' );
+				$( responsediv ).find( '.response-message' ).delay('4000').fadeOut('4000');
+			}
 
-			if ( response.data.success === false ){
-				$( responsediv ).append( '<p class="response-message error">'+response.data.message+'</p>' );
-				$( responsediv ).find( '.response-message' ).delay( '4000' ).fadeOut( '4000' );
-			} // if sucess false
-		});
+		}); // end AJAX post
 
 	});
 
@@ -104,6 +105,23 @@ jQuery(document).ready(function($) {
 			}
 
 		});
+
+	});
+
+		/**
+	 * Handling the cancel edit of a form
+	 */
+
+	$( 'body' ).on( 'click', '#bcit-todo-cancel', function(e){
+
+		e.preventDefault();
+
+		var list_wrapper = $(this).parents('.bcit-single-task');
+		var form_holder  = $(list_wrapper).find('.form-holder');
+		var task_wrapper = $(list_wrapper).find( '.task-wrapper' );
+
+		$(form_holder).empty();
+		$(task_wrapper).show();
 
 	});
 });

@@ -57,3 +57,20 @@ function bcit_todo_get_response_section(){
 	return $html;
 
 } // get_response_section
+
+function bcit_todo_get_single_task( $task ){
+
+	$html = '<li class="bcit-single-task">';
+		$html .= '<span class="task-wrapper">';
+			$html .= '<span class="task-title">'. esc_attr( get_the_title( absint( $task->ID ) ) ) .'</span>';
+			$html .= '<span class="task-description">'. wp_kses_post( $task->post_content ) .'</span>';
+			$html .= '<a href="'. absint( $task->ID ) .'" class="bcit-button edit">Edit</a>';
+			$html .= '<img src="'. plugins_url( '/bcit-todo-list/assets/images/spinner.gif' ).'" class="bcit-todo-ajax-spinner" />';
+		$html .= '</span>';
+		$html .= '<span class="form-holder"></span>';
+	$html .= '</li>';
+
+	return $html;
+
+}
+

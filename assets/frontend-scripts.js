@@ -1,6 +1,6 @@
 jQuery(document).ready(function($) {
 
-	$( '#bcit-todo-form' ).submit( function( e ){
+	$( 'body' ).on( 'submit', '#bcit-todo-form', function( e ){
 
 		e.preventDefault();
 
@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
 		var action      = $( form ).attr( 'action' );
 		var title       = $( form ).find( '#bcit-todo-item' ).val();
 		var description = $( form ).find( '#bcit-todo-item-description' ).val();
+		var post_id     = $( form ).find( '#bcit-todo-submit' ).data('post_id');
 		var responsediv = $( form ).find( '#bcit_ajax_response' );
 		var spinner     = $( form ).find( '.bcit-todo-ajax-spinner' );
 
@@ -17,6 +18,7 @@ jQuery(document).ready(function($) {
 			action: action,
 			title: title,
 			description: description,
+			post_id: post_id,
 			security: BCITTODO.bcit_todo_ajax_nonce
 		}
 
@@ -28,6 +30,20 @@ jQuery(document).ready(function($) {
 				$( responsediv ).append( '<p class="response-message success">'+response.data.message+'</p>' );
 				$( responsediv ).find( '.response-message' ).delay( '4000' ).fadeOut( '4000' );
 				clear_form( form );
+
+				if ( response.data.updated === true ){
+					var list_wrapper = $(form).parents('.bcit-single-task');
+					var task_wrapper = $(list_wrapper).find( '.task-wrapper' );
+
+					$(task_wrapper).find('.task-title').empty().append( response.data.task_title );
+					$(task_wrapper).find('.task-description').empty().append( response.data.task_description );
+
+					$(task_wrapper).show();
+					$(form).remove();
+				} else {
+					$('#bcit-task-list').prepend( response.data.html );
+				}
+
 			} // if success true
 
 			if ( response.data.success === false ){

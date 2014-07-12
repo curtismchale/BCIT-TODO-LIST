@@ -91,6 +91,10 @@ class BCIT_TODO_Ajax_Requests{
 			'post_status'  => 'publish',
 		);
 
+		if ( isset( $posted_values['post_id'] ) && ! empty( $posted_values['post_id'] ) ){
+			$post_args['ID'] = absint( $posted_values['post_id'] );
+		}
+
 		$post_id = wp_insert_post( $post_args );
 
 		if ( ! is_wp_error( $post_id ) ){
@@ -98,6 +102,16 @@ class BCIT_TODO_Ajax_Requests{
 				'success' => true,
 				'message' => 'Task saved',
 			);
+
+			if ( $post_id == $posted_values['post_id'] ){
+				$args['updated']          = true;
+				$args['task_title']       = esc_attr( $posted_values['title'] );
+				$args['task_description'] = esc_textarea( $posted_values['description'] );
+			} else {
+				$task         = get_post( $post_id );
+				$args['html'] = bcit_todo_get_single_task( $task );
+			}
+
 		} else {
 			$args = array(
 				'success' => false,
